@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To my Tiara, ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="romantic-bg">
+  <div class="message-wrapper">
+    <div class="message-card">
+
+      <h1 class="love-title">To my Tiara: </h1>
+
+      <p class="note-text">
+        Happy 7 months, my baby.  
+        Thanks for always being so understanding and caring to me. I really love how much you care and how thoughtful you are. I truly love spendig time with you and I appreciate all the effort you put into our relationship honey 💖. I'm sorry for not being perfect so that's why one of the things I love most about you is that you're willing to understand me whether that be not doing things that make me uncomfortable or comprimising with me. I really hope I can become a better person for you so that you love every second you spend with me as much as I do with you. I still remeber one of the sweetest things you've said to me was about when you knew you loved me because of how patient and respectful I was but I knew I loved you when being with you felt right and being apart from you felt like something about me was missing so that's why I always want to support you and help you with your overthinking or anything. 
+      </p>
+
+      <p class="note-text">
+        Check your cr babe🎁
+      </p>
+
+      <h3 class="scan-text">Tap the present, then scan this, baby ❤️</h3>
+
+      <div class="gift-area">
+        <!-- Gift Box -->
+        <div id="giftBox" class="gift-box" onclick="openGift()">
+          <div class="gift-piece lid"></div>
+          <div class="gift-piece front"></div>
+          <div class="gift-piece left"></div>
+          <div class="gift-piece right"></div>
+          <div class="ribbon-vert"></div>
+          <div class="ribbon-horiz"></div>
+        </div>
+
+        <!-- QR (hidden) -->
+        <div id="qrReveal" class="qr-reveal">
+          <img src="free-seasonal-lucky-chest-v0-e8ngxe9akm2g1.png" alt="QR code" class="qr-image">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function openGift() {
+      const gift = document.getElementById('giftBox');
+      const qr = document.getElementById('qrReveal');
+      if (!gift.classList.contains('opened')) {
+        gift.classList.add('opened');
+        qr.classList.add('show');
+      }
+    }
+  </script>
+</body>
+</html>
