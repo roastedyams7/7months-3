@@ -1,0 +1,302 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ---------- INDEX PAGE BACKGROUND ---------- */
+body:not(.romantic-bg) {
+  background: linear-gradient(135deg, #ffeaf4, #fff5fb);
+  min-height: 100vh;
+}
+
+/* ---------- DESIGNER PAGE ---------- */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 16px 40px;
+}
+
+.shop-title {
+  text-align: center;
+  color: #d31270;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.card {
+  background: rgba(255,255,255,0.9);
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  flex: 1 1 300px;
+}
+
+.preview-card {
+  text-align: center;
+}
+
+.preview-area {
+  min-height: 260px;
+  margin-top: 12px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+select,
+input[type="color"] {
+  width: 100%;
+  margin-top: 4px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.footer-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-main {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #ff4d8f;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(255,77,143,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-main:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255,77,143,0.5);
+}
+
+/* ---------- ROMANTIC BACKGROUND (MESSAGE PAGE) ---------- */
+.romantic-bg {
+  background:
+    radial-gradient(circle at top left,  #ffb3c8, transparent 50%),
+    radial-gradient(circle at top right, #ffa6d1, transparent 50%),
+    radial-gradient(circle at bottom left, #ff95c2, transparent 50%),
+    radial-gradient(circle at bottom right,#ff8fb4, transparent 50%),
+    linear-gradient(180deg, #ffdde9, #ffb8d3);
+  min-height: 100vh;
+  padding: 40px 12px;
+}
+
+/* ---------- MESSAGE CARD ---------- */
+.message-wrapper {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.message-card {
+  background: rgba(255,255,255,0.45);
+  padding: 28px 24px 32px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  color: #4a1c28;
+}
+
+.love-title {
+  text-align: center;
+  color: #b30051;
+  font-size: 2.1rem;
+  margin-bottom: 16px;
+}
+
+.note-text {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+.scan-text {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #7a0033;
+}
+
+/* ---------- GIFT AREA ---------- */
+.gift-area {
+  margin-top: 8px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 60px;
+  overflow: hidden; /* so pieces can leave the card visually */
+}
+
+/* ---------- GIFT BOX ---------- */
+.gift-box {
+  position: relative;
+  width: 140px;
+  height: 120px;
+  margin: 16px auto;
+  cursor: pointer;
+}
+
+/* Pieces */
+.gift-piece {
+  position: absolute;
+  border-radius: 8px;
+}
+
+.front {
+  bottom: 0;
+  left: 10px;
+  width: 120px;
+  height: 80px;
+  background: #ff5c8d;
+}
+
+.left {
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 80px;
+  background: #e04879;
+}
+
+.right {
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 80px;
+  background: #e04879;
+}
+
+.lid {
+  top: -28px;
+  left: 0;
+  width: 140px;
+  height: 38px;
+  background: #ff2e6f;
+  border-radius: 10px 10px 6px 6px;
+}
+
+/* Ribbons */
+.ribbon-vert {
+  position: absolute;
+  top: -28px;
+  left: 64px;
+  width: 12px;
+  height: 118px;
+  background: #ffd8e7;
+  border-radius: 999px;
+}
+
+.ribbon-horiz {
+  position: absolute;
+  bottom: 22px;
+  left: 20px;
+  width: 100px;
+  height: 10px;
+  background: #ffd8e7;
+  border-radius: 999px;
+}
+
+/* ---------- FALL OUT ANIMATION ---------- */
+@keyframes fall-out-down {
+  to {
+    transform: translateY(400px) rotate(25deg);
+    opacity: 0;
+  }
+}
+@keyframes fall-out-left {
+  to {
+    transform: translate(-220px, 260px) rotate(-30deg);
+    opacity: 0;
+  }
+}
+@keyframes fall-out-right {
+  to {
+    transform: translate(220px, 260px) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+.gift-box.opened .lid {
+  animation: fall-out-up 0.7s ease-in forwards;
+}
+
+/* lid flies up then down */
+@keyframes fall-out-up {
+  0%   { transform: translateY(0) rotate(0deg); }
+  40%  { transform: translateY(-40px) rotate(-8deg); }
+  100% { transform: translateY(400px) rotate(25deg); opacity: 0; }
+}
+
+.gift-box.opened .front {
+  animation: fall-out-down 0.7s ease-in forwards;
+  animation-delay: 0.05s;
+}
+
+.gift-box.opened .left {
+  animation: fall-out-left 0.7s ease-in forwards;
+  animation-delay: 0.08s;
+}
+
+.gift-box.opened .right {
+  animation: fall-out-right 0.7s ease-in forwards;
+  animation-delay: 0.1s;
+}
+
+.gift-box.opened .ribbon-vert,
+.gift-box.opened .ribbon-horiz {
+  animation: fall-out-down 0.7s ease-in forwards;
+  animation-delay: 0.12s;
+}
+
+/* ---------- QR REVEAL ---------- */
+.qr-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.qr-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qr-image {
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  background: white;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 720px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .message-card {
+    padding: 22px 16px 26px;
+  }
+}

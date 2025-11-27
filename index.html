@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Design Your Flower Baby</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffeaf4, #fff5fb);
+      min-height: 100vh;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 16px 40px;
+    }
+
+    .shop-title {
+      text-align: center;
+      color: #d31270;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.92);
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      flex: 1 1 300px;
+    }
+
+    .preview-card {
+      text-align: center;
+    }
+
+    .preview-area {
+      min-height: 260px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    select,
+    input[type="color"] {
+      width: 100%;
+      margin-top: 4px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+    }
+
+    .footer-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-main {
+      display: inline-block;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #ff4d8f;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 16px rgba(255,77,143,0.4);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(255,77,143,0.5);
+    }
+
+    @media (max-width: 720px) {
+      .layout {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1 class="shop-title">Design Your Flower Baby 🌸</h1>
+    <p class="subtitle">Choose your flower and colour and then take a screenshot and send it to me babe</p>
+
+    <div class="layout">
+      <!-- Controls -->
+      <div class="card">
+        <label>
+          Flower Type
+          <select id="flowerType">
+            <option value="sunflower">Sunflower</option>
+            <option value="rose">Rose</option>
+            <option value="peony">Peony</option>
+            <option value="chrysanthemum">Chrysanthemum</option>
+            <option value="lily">Lily</option>
+          </select>
+        </label>
+
+        <label>
+          Petal Colour
+          <input id="petalColor" type="color" value="#ff4b78">
+        </label>
+      </div>
+
+      <!-- Preview -->
+      <div class="card preview-card">
+        <h2>Your Flower:</h2>
+        <div id="previewContainer" class="preview-area"></div>
+      </div>
+    </div>
+
+    <div class="footer-button">
+      <a href="message.html" class="btn-main">Next Surprise 💌</a>
+    </div>
+  </div>
+
+  <script>
+    // Helper function to darken colors for depth
+    function shadeColor(color, percent) {
+      let R = parseInt(color.substring(1, 3), 16);
+      let G = parseInt(color.substring(3, 5), 16);
+      let B = parseInt(color.substring(5, 7), 16);
+
+      R = parseInt(R * (100 + percent) / 100);
+      G = parseInt(G * (100 + percent) / 100);
+      B = parseInt(B * (100 + percent) / 100);
+
+      R = (R < 255) ? R : 255;
+      G = (G < 255) ? G : 255;
+      B = (B < 255) ? B : 255;
+
+      R = Math.round(R);
+      G = Math.round(G);
+      B = Math.round(B);
+
+      const RR = R.toString(16).length == 1 ? "0" + R.toString(16) : R.toString(16);
+      const GG = G.toString(16).length == 1 ? "0" + G.toString(16) : G.toString(16);
+      const BB = B.toString(16).length == 1 ? "0" + B.toString(16) : B.toString(16);
+
+      return "#" + RR + GG + BB;
+    }
+
+    // ---------- IMPROVED ROSE USING ELLIPSES/OVALS ----------
+    function rose(color) {
+      // Calculate darker shades for depth
+      const darker1 = shadeColor(color, -20);
+      const darker2 = shadeColor(color, -40);
+      const darker3 = shadeColor(color, -60);
+      
+      return `
+      <svg width="260" height="260" viewBox="0 0 200 260">
+        <!-- stem -->
+        <rect x="98" y="135" width="6" height="90" fill="#2e8b57" rx="3" />
+        
+        <!-- leaves -->
+        <ellipse cx="85" cy="180" rx="18" ry="12" fill="#2e8b57" transform="rotate(-30 85 180)" />
+        <ellipse cx="115" cy="195" rx="18" ry="12" fill="#2e8b57" transform="rotate(30 115 195)" />
+        
+        <!-- Outer layer of petals (largest ellipses) -->
+        <ellipse cx="100" cy="110" rx="38" ry="28" fill="${color}" />
+        <ellipse cx="75" cy="105" rx="32" ry="24" fill="${color}" transform="rotate(-15 75 105)" />
+        <ellipse cx="125" cy="105" rx="32" ry="24" fill="${color}" transform="rotate(15 125 105)" />
+        <ellipse cx="90" cy="120" rx="30" ry="22" fill="${color}" transform="rotate(-10 90 120)" />
+        <ellipse cx="110" cy="120" rx="30" ry="22" fill="${color}" transform="rotate(10 110 120)" />
+        
+        <!-- Middle layer of petals (medium ellipses) -->
+        <ellipse cx="100" cy="100" rx="30" ry="22" fill="${darker1}" />
+        <ellipse cx="85" cy="95" rx="26" ry="20" fill="${darker1}" transform="rotate(-20 85 95)" />
+        <ellipse cx="115" cy="95" rx="26" ry="20" fill="${darker1}" transform="rotate(20 115 95)" />
+        <ellipse cx="95" cy="105" rx="24" ry="18" fill="${darker1}" transform="rotate(-5 95 105)" />
+        <ellipse cx="105" cy="105" rx="24" ry="18" fill="${darker1}" transform="rotate(5 105 105)" />
+        
+        <!-- Inner layer of petals (smaller ellipses) -->
+        <ellipse cx="100" cy="90" rx="22" ry="18" fill="${darker2}" />
+        <ellipse cx="92" cy="88" rx="20" ry="16" fill="${darker2}" transform="rotate(-15 92 88)" />
+        <ellipse cx="108" cy="88" rx="20" ry="16" fill="${darker2}" transform="rotate(15 108 88)" />
+        <ellipse cx="96" cy="95" rx="18" ry="14" fill="${darker2}" transform="rotate(-10 96 95)" />
+        <ellipse cx="104" cy="95" rx="18" ry="14" fill="${darker2}" transform="rotate(10 104 95)" />
+        
+        <!-- Innermost petals/tight bud (smallest ellipses) -->
+        <ellipse cx="100" cy="85" rx="16" ry="12" fill="${darker3}" />
+        <ellipse cx="97" cy="83" rx="14" ry="10" fill="${darker3}" transform="rotate(-10 97 83)" />
+        <ellipse cx="103" cy="83" rx="14" ry="10" fill="${darker3}" transform="rotate(10 103 83)" />
+        
+        <!-- Center of the rose -->
+        <ellipse cx="100" cy="82" rx="10" ry="8" fill="${shadeColor(color, -80)}" />
+        
+        <!-- Subtle highlights -->
+        <ellipse cx="95" cy="95" rx="12" ry="8" fill="#ffffff" opacity="0.2" transform="rotate(-15 95 95)" />
+        <ellipse cx="105" cy="95" rx="12" ry="8" fill="#ffffff" opacity="0.2" transform="rotate(15 105 95)" />
+      </svg>`;
+    }
+
+    // ---------- SUNFLOWER ----------
+    function sunflower(color) {
+      return `
+      <svg width="260" height="260" viewBox="0 0 200 260">
+        <!-- stem -->
+        <rect x="98" y="135" width="6" height="90" fill="#2e8b57" rx="3" />
+        <!-- leaves -->
+        <path d="M101 170 C 75 162, 65 188, 88 193 Z" fill="#2e8b57" />
+        <path d="M101 185 C 127 177, 137 203, 114 208 Z" fill="#2e8b57" />
+
+        <!-- petals -->
+        ${Array.from({length:20}).map((_, i) => `
+          <path d="
+            M100 40
+            C 118 70, 118 95, 100 115
+            C 82 95, 82 70, 100 40
+          "
+          fill="${color}" transform="rotate(${i * 18} 100 100)" />
+        `).join('')}
+
+        <!-- center -->
+        <circle cx="100" cy="100" r="35" fill="#5a3b1e" />
+        <circle cx="100" cy="100" r="23" fill="#7a522f" />
+      </svg>`;
+    }
+
+    // ---------- PEONY ----------
+    function peony(color) {
+      return `
+      <svg width="260" height="260" viewBox="0 0 200 260">
+        <!-- stem -->
+        <rect x="98" y="135" width="6" height="90" fill="#2e8b57" rx="3" />
+        <!-- leaves -->
+        <path d="M101 170 C 75 162, 65 188, 88 193 Z" fill="#2e8b57" />
+        <path d="M101 185 C 127 177, 137 203, 114 208 Z" fill="#2e8b57" />
+
+        ${Array.from({length:14}).map((_, i) => `
+          <ellipse cx="100" cy="100" rx="55" ry="75"
+                   fill="${color}" opacity="0.8"
+                   transform="rotate(${i * 11} 100 100)" />
+        `).join('')}
+        <circle cx="100" cy="100" r="28" fill="#ffd5df"/>
+      </svg>`;
+    }
+
+    // ---------- CHRYSANTHEMUM ----------
+    function chrysanthemum(color) {
+      return `
+      <svg width="260" height="260" viewBox="0 0 200 260">
+        <!-- stem -->
+        <rect x="98" y="135" width="6" height="90" fill="#2e8b57" rx="3" />
+        <!-- leaves -->
+        <path d="M101 170 C 75 162, 65 188, 88 193 Z" fill="#2e8b57" />
+        <path d="M101 185 C 127 177, 137 203, 114 208 Z" fill="#2e8b57" />
+
+        ${Array.from({length:32}).map((_, i) => `
+          <ellipse cx="100" cy="100" rx="15" ry="80"
+                   fill="${color}" opacity="0.85"
+                   transform="rotate(${i * 11.25} 100 100)" />
+        `).join('')}
+        <circle cx="100" cy="100" r="23" fill="#ffe082"/>
+      </svg>`;
+    }
+
+    // ---------- LILY ----------
+    function lily(color) {
+      return `
+      <svg width="260" height="260" viewBox="0 0 200 260">
+        <!-- stem -->
+        <rect x="98" y="135" width="6" height="90" fill="#2e8b57" rx="3" />
+        <!-- leaves -->
+        <path d="M101 170 C 75 162, 65 188, 88 193 Z" fill="#2e8b57" />
+        <path d="M101 185 C 127 177, 137 203, 114 208 Z" fill="#2e8b57" />
+
+        ${Array.from({length:6}).map((_, i) => `
+          <path d="
+            M100 100
+            Q 72 40 100 25
+            Q 128 40 100 100
+          "
+          fill="${color}" opacity="0.95"
+          transform="rotate(${i * 60} 100 100)" />
+        `).join('')}
+        <circle cx="100" cy="100" r="16" fill="#ffeb3b"/>
+      </svg>`;
+    }
+
+    function getFlowerSVG(type, color) {
+      if (type === "rose") return rose(color);
+      if (type === "sunflower") return sunflower(color);
+      if (type === "peony") return peony(color);
+      if (type === "chrysanthemum") return chrysanthemum(color);
+      if (type === "lily") return lily(color);
+    }
+
+    const preview = document.getElementById("previewContainer");
+    const typeSelect = document.getElementById("flowerType");
+    const colorPicker = document.getElementById("petalColor");
+
+    function updateFlower() {
+      const type = typeSelect.value;
+      const color = colorPicker.value;
+      preview.innerHTML = getFlowerSVG(type, color);
+    }
+
+    typeSelect.addEventListener("change", updateFlower);
+    colorPicker.addEventListener("input", updateFlower);
+
+    updateFlower();
+  </script>
+</body>
+</html>
